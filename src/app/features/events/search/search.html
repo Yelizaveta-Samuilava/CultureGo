@@ -1,0 +1,46 @@
+<div class="home-container">
+  <header class="header">
+    <div class="logo-group">
+      <span class="dot blue"></span>
+      <span class="dot lime"></span>
+      <h1 class="logo-text">CULTURE GO</h1>
+    </div>
+    <div class="user-actions">
+      <span class="user-icon">👤</span>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="text-side">
+        <h1>You choose your event for tomorrow</h1>
+      </div>
+      
+      <div class="search-side">
+        <div class="search-bar-container">
+          <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" placeholder="Search for an artist, event...">
+          <button class="search-btn" (click)="onSearch()">🔍</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="results-container" *ngIf="events.length > 0">
+    <div class="events-grid">
+      <div class="event-card" 
+           *ngFor="let event of events" 
+           [routerLink]="['/event', event.id]">
+        
+        <img [src]="event.images[0]?.url" class="card-img" alt="event image">
+        
+        <div class="card-content">
+          <h3>{{ event.name }}</h3>
+          <p>📍 {{ event._embedded?.venues?.[0]?.name }} - {{ event._embedded?.venues?.[0]?.city?.name }}</p>
+          <p class="date">📅 {{ event.dates.start.localDate }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-spacer"></div>
+</div>

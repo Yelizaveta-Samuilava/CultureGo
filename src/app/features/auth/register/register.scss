@@ -1,0 +1,64 @@
+.register-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FDFBF7;
+
+
+  .visual-section {
+  flex: 1;
+  background-image: url('../../../../assets/login-pattern.png'); // Note le "/" au début
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; // Pour être sûr que la section prend toute la hauteur
+}
+
+
+  .form-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+
+    .form-content {
+      width: 100%;
+      max-width: 400px;
+      
+      h2 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+      }
+
+      .input-group {
+        margin-bottom: 2rem;
+        label {
+          display: block;
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+        input {
+          border: none;
+          background: transparent;
+          font-size: 1.2rem;
+          width: 100%;
+          border-bottom: 2px solid #D4F14E; // Soulignement vert comme sur la maquette
+          outline: none;
+          padding: 5px 0;
+        }
+      }
+
+      .register-btn {
+        background: #D4F14E;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-weight: 800;
+        cursor: pointer;
+        &:disabled { background: #eee; cursor: not-allowed; }
+      }
+    }
+  }
+}

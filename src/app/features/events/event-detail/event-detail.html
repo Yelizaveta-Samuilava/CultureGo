@@ -1,0 +1,29 @@
+<div class="detail-page" *ngIf="event">
+  <button class="btn-back" routerLink="/home">← Retour</button>
+
+  <div class="event-hero-card">
+    <div class="img-wrapper">
+      <img [src]="event.images?.[0]?.url" [alt]="event.name">
+    </div>
+
+    <div class="content-wrapper">
+      <span class="category-tag">{{ event.classifications?.[0]?.segment?.name }}</span>
+      <h1 class="event-title">{{ event.name }}</h1>
+      
+      <div class="info-box">
+        <p><strong>📍 Lieu :</strong> {{ event._embedded?.venues?.[0]?.name }}, {{ event._embedded?.venues?.[0]?.city?.name }}</p>
+        <p><strong>📅 Date :</strong> {{ event.dates?.start?.localDate }}</p>
+        
+        <p *ngIf="event.priceRanges?.length > 0">
+          <strong>💰 Prix :</strong> dès {{ event.priceRanges[0].min }} {{ event.priceRanges[0].currency }}
+        </p>
+      </div>
+
+      <a [href]="event.url" target="_blank" class="buy-button">RÉSERVER MES PLACES</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!event" style="padding: 50px; text-align: center;">
+  <h2>Chargement de l'événement...</h2>
+</div>
