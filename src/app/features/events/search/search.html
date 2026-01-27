@@ -1,14 +1,5 @@
 <div class="home-container">
-  <header class="header">
-    <div class="logo-group">
-      <span class="dot blue"></span>
-      <span class="dot lime"></span>
-      <h1 class="logo-text">CULTURE GO</h1>
-    </div>
-    <div class="user-actions">
-      <span class="user-icon">👤</span>
-    </div>
-  </header>
+  <app-navbar></app-navbar>
 
   <section class="hero-section">
     <div class="hero-content">
@@ -19,7 +10,9 @@
       <div class="search-side">
         <div class="search-bar-container">
           <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" placeholder="Search for an artist, event...">
-          <button class="search-btn" (click)="onSearch()">🔍</button>
+          <button class="search-btn" (click)="onSearch()">
+            <img src="assets/search.png" alt="Search" class="search-icon">
+          </button>
         </div>
       </div>
     </div>

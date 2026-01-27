@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 60px;
+  position: relative;
+  z-index: 20;
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.2s ease;
+    cursor: pointer; // Assure que l'utilisateur voit que c'est cliquable
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    .main-logo {
+      height: 100px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+  }
+
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px; // Espace entre l'icône favoris et l'icône compte
+
+    // Style pour l'icône favoris (un peu plus petite pour l'équilibre)
+    .nav-icon {
+      height: 60px; // Ajusté pour être proportionnel au compte de 70px
+      width: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    // Style pour l'icône compte
+    .user-account-icon {
+      height: 70px; 
+      width: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

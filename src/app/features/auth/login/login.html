@@ -1,21 +1,29 @@
 <div class="login-container">
   <div class="form-section">
+    <img src="assets/logo-culturego.png" alt="Logo CultureGo" class="site-logo">
+
     <div class="form-content">
       <h2>Connexion</h2>
       
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <div class="input-group">
           <label>email :</label>
-          <input type="email" formControlName="email" placeholder="votre@email.com">
+          <div class="input-wrapper">
+            <input type="email" formControlName="email" placeholder=" ">
+            <span class="dots">........</span>
+          </div>
         </div>
 
         <div class="input-group">
           <label>password :</label>
-          <input type="password" formControlName="password" placeholder="********">
+          <div class="input-wrapper">
+            <input type="password" formControlName="password" placeholder=" ">
+            <span class="dots">........</span>
+          </div>
         </div>
 
         <button type="submit" [disabled]="loginForm.invalid" class="login-btn">
-          Se connecter
+          Log In
         </button>
       </form>
 
@@ -24,8 +32,5 @@
       </button>
     </div>
   </div>
-
-  <div class="visual-section">
-    
-  </div>
+  <div class="visual-section"></div>
 </div>

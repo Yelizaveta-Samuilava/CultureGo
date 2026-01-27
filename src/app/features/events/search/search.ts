@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EventService } from '../../../core/services/event';
+// 1. On importe le nouveau composant Navbar
+import { NavbarComponent } from '../../../core/components/navbar/navbar';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule
+  // 2. On ajoute NavbarComponent ici
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    RouterModule,
+    NavbarComponent 
   ],
   templateUrl: './search.html',
   styleUrls: ['./search.scss']
