@@ -1,11 +1,27 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router'; // 1. Importe le module de routage
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule], // 2. Ajoute-le ici
+  imports: [RouterModule],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss']
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+
+  constructor(private router: Router) {}
+
+  onProfileClick() {
+    // On vérifie si l'utilisateur est stocké dans le localStorage
+    const user = localStorage.getItem('userName');
+
+    if (user) {
+      // Si le nom existe, l'utilisateur est considéré comme connecté
+      this.router.navigate(['/profile']);
+    } else {
+      // Sinon, on l'envoie vers la page de login
+      this.router.navigate(['/login']);
+    }
+  }
+}

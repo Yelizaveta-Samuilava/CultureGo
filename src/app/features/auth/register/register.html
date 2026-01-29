@@ -1,30 +1,39 @@
 <div class="register-container">
-  <div class="visual-section">
-    
-  </div>
+  <div class="visual-section"></div>
 
   <div class="form-section">
+    <img src="assets/back.png" alt="Retour" class="back-btn" (click)="goBack()">
+
     <div class="form-content">
       <h2>Sign Up</h2>
       
       <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
         <div class="input-group">
           <label>your name :</label>
-          <input type="text" formControlName="name" placeholder="Name">
+          <div class="input-wrapper">
+            <input type="text" formControlName="name" placeholder=" ">
+            <span class="dots">........</span>
+          </div>
         </div>
 
         <div class="input-group">
           <label>your email :</label>
-          <input type="email" formControlName="email" placeholder="Email">
+          <div class="input-wrapper">
+            <input type="email" formControlName="email" placeholder=" ">
+            <span class="dots">........</span>
+          </div>
         </div>
 
         <div class="input-group">
           <label>your password :</label>
-          <input type="password" formControlName="password" placeholder="********">
+          <div class="input-wrapper">
+            <input type="password" formControlName="password" placeholder=" ">
+            <span class="dots">........</span>
+          </div>
         </div>
 
         <button type="submit" [disabled]="registerForm.invalid" class="register-btn">
-          Créer un compte
+          Sign Up
         </button>
       </form>
     </div>

@@ -1,39 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EventService } from '../../../core/services/event';
-// 1. On importe le nouveau composant Navbar
 import { NavbarComponent } from '../../../core/components/navbar/navbar';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  // 2. On ajoute NavbarComponent ici
-  imports: [
-    CommonModule, 
-    FormsModule, 
-    RouterModule,
-    NavbarComponent 
-  ],
+  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent],
   templateUrl: './search.html',
   styleUrls: ['./search.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   searchQuery: string = '';
   events: any[] = [];
+  userName: string = '';
+  isLoggedIn: boolean = false;
 
-  constructor(private eventService: EventService) {}
+  constructor(
+    private eventService: EventService,
+    private cdr: ChangeDetectorRef // On injecte le détecteur
+  ) {}
+
+  ngOnInit() {
+    this.checkUser();
+  }
+
+  checkUser() {
+    const name = localStorage.getItem('userName');
+    if (name) {
+      this.userName = name;
+      this.isLoggedIn = true;
+      // On force la détection pour que le [class.is-logged] soit appliqué de suite
+      this.cdr.detectChanges(); 
+    } else {
+      this.isLoggedIn = false;
+    }
+  }
 
   onSearch() {
     if (this.searchQuery.trim()) {
       this.eventService.searchEvents(this.searchQuery).subscribe({
-        next: (data) => {
-          // Ticketmaster renvoie les données dans _embedded.events
-          this.events = data._embedded?.events || [];
-          console.log('Événements trouvés :', this.events);
-        },
-        error: (err) => console.error('Erreur API :', err)
+        next: (data) => this.events = data._embedded?.events || [],
+        error: (err) => console.error('API Error:', err)
       });
     }
   }

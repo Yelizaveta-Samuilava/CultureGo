@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<div class="profile-page-full">
+  <h1 class="profile-title">Your place</h1>
+
+  <div class="content-wrapper">
+    <div class="main-profile-content">
+      <div class="icon-section">
+        <img src="assets/profile-icon.png" alt="Profile Icon" class="profile-icon">
+      </div>
+
+      <div class="info-display">
+        <ng-container *ngIf="!isEditing; else editForm">
+          <div class="data-row">
+            <label>name :</label>
+            <span class="value">{{ userName }}</span>
+          </div>
+          <div class="data-row">
+            <label>email :</label>
+            <span class="value">{{ userEmail }}</span>
+          </div>
+          <div class="button-container">
+            <button class="edit-btn" (click)="onEditProfile()">Modifier mes informations</button>
+          </div>
+        </ng-container>
+
+        <ng-template #editForm>
+          <div class="data-row">
+            <label>name :</label>
+            <input type="text" [(ngModel)]="userName" class="edit-input">
+          </div>
+          <div class="data-row">
+            <label>email :</label>
+            <input type="email" [(ngModel)]="userEmail" class="edit-input">
+          </div>
+          <div class="button-group">
+            <button class="save-btn" (click)="onSave()">Sauvegarder</button>
+            <button class="cancel-btn" (click)="onCancel()">Annuler</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <img src="assets/logout.png" alt="Logout" class="action-icon logout-img" (click)="onLogout()">
+  <img src="assets/delete.png" alt="Delete Account" class="action-icon delete-img" (click)="onDeleteAccount()">
+</div>

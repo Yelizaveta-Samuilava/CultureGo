@@ -1,0 +1,136 @@
+.profile-page-full {
+  width: 100vw;
+  height: calc(100vh - 90px);
+  background-color: #FDFBF7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; 
+  font-family: 'Red Hat Display', sans-serif;
+  padding-top: 10px;
+  overflow: hidden;
+
+  .profile-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #0395ff;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+  }
+
+  .content-wrapper {
+    width: 100%;
+    max-width: 1000px; 
+    z-index: 2;
+
+    .main-profile-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+    }
+
+    .icon-section {
+      flex: 0 0 auto;
+      img.profile-icon {
+        width: 280px !important;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+    }
+
+    .info-display {
+      flex: 0 1 400px;
+
+      .data-row {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 1rem;
+        gap: 12px;
+
+        label {
+          font-size: 1.5rem;
+          font-weight: 900;
+          color: #000;
+          min-width: 80px;
+        }
+
+        .value, .edit-input {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #555;
+        }
+
+        .edit-input {
+          border: none;
+          background: rgba(0, 0, 0, 0.05);
+          border-radius: 8px;
+          outline: none;
+          width: 100%;
+          padding: 4px 10px;
+          font-family: inherit;
+          transition: background 0.2s ease;
+          &:focus { background: rgba(0, 0, 0, 0.08); }
+        }
+      }
+
+      .button-group, .button-container {
+        margin-top: 20px;
+      }
+
+      .edit-btn, .save-btn, .cancel-btn {
+        border: 3px solid #000;
+        padding: 8px 25px;
+        border-radius: 40px;
+        font-weight: 900;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        &:hover { transform: translateY(-2px); box-shadow: 4px 4px 0px #000; }
+      }
+
+      .edit-btn, .save-btn { background-color: #D4F14E; color: #FF69B4; }
+      .cancel-btn { background-color: #FF69B4; color: #FDFBF7; margin-left: 10px; }
+    }
+  }
+
+  // --- STYLE DES ICONES ACTIONS CORRIGÉ ---
+  .action-icon {
+    position: absolute;
+    bottom: 200px; // Un peu plus haut pour l'agrandissement
+    width: 80px !important; // TAILLE AGRANDIE
+    height: auto;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    // Séparation forcée
+    &.logout-img {
+      left: 60px; 
+    }
+
+    &.delete-img {
+      right: 60px;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 180px;
+    background: url('/assets/profile-footer.png') no-repeat bottom center / contain;
+    z-index: 1;
+    pointer-events: none;
+  }
+}

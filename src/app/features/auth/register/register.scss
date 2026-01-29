@@ -3,61 +3,123 @@
   width: 100vw;
   height: 100vh;
   background-color: #FDFBF7;
-
+  overflow: hidden;
+  font-family: 'Red Hat Display', sans-serif;
 
   .visual-section {
-  flex: 1;
-  background-image: url('../../../../assets/login-pattern.png'); // Note le "/" au début
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh; // Pour être sûr que la section prend toute la hauteur
-}
-
+    flex: 1;
+    background-image: url('../../../../assets/login-pattern.png');
+    background-size: cover;
+    background-position: left center; // Image à gauche
+    background-repeat: no-repeat;
+  }
 
   .form-section {
     flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center; 
     padding: 0 5%;
+    position: relative;
+
+    .back-btn {
+      position: absolute;
+      bottom: 40px;
+      right: 50px; 
+      height: 45px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      &:hover { transform: scale(1.1); }
+    }
 
     .form-content {
       width: 100%;
-      max-width: 400px;
-      
+      max-width: 700px; 
+
       h2 {
         font-size: 4rem;
-        font-weight: 800;
-        margin-bottom: 2rem;
+        font-weight: 900;
+        margin-bottom: 3.5rem;
+        letter-spacing: -2px;
+        text-align: center; // Centré
+        width: 100%;
       }
 
       .input-group {
-        margin-bottom: 2rem;
+        margin-bottom: 3.5rem;
+        display: flex;       
+        align-items: baseline; 
+        justify-content: flex-start; // Aligne Label + Points à gauche
+
         label {
-          display: block;
-          font-size: 1.5rem;
-          font-weight: 700;
+          font-size: 2.5rem; 
+          font-weight: 900;
+          white-space: nowrap;
+          margin-right: 15px; 
         }
-        input {
-          border: none;
-          background: transparent;
-          font-size: 1.2rem;
-          width: 100%;
-          border-bottom: 2px solid #D4F14E; // Soulignement vert comme sur la maquette
-          outline: none;
-          padding: 5px 0;
+
+        .input-wrapper {
+          position: relative;
+          display: flex;
+          align-items: baseline;
+          flex: 1; // Prend toute la place APRÈS le label
+
+          input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 2.2rem; 
+            font-weight: 800;
+            color: #333;
+            outline: none;
+            z-index: 2;
+            padding: 0;
+          }
+
+          .dots {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #000;
+            letter-spacing: 3px;
+            z-index: 1;
+            pointer-events: none;
+          }
+
+          input:not(:placeholder-shown) + .dots {
+            opacity: 0;
+            visibility: hidden;
+          }
         }
       }
 
       .register-btn {
-        background: #D4F14E;
-        border: none;
-        padding: 15px 30px;
-        border-radius: 30px;
-        font-weight: 800;
+        display: block; // Pour permettre le centrage auto
+        margin: 2rem auto 0 auto; // Centré
+        width: 200px; 
+        background-color: #D4F14E !important;
+        color: #FF69B4 !important;
+        padding: 18px; 
+        border-radius: 35px; 
         cursor: pointer;
-        &:disabled { background: #eee; cursor: not-allowed; }
+        font-family: 'Red Hat Display', sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+
+        &:disabled { 
+          opacity: 1;
+          cursor: not-allowed;
+        }
+        
+        &:hover:enabled {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 0px #000;
+        }
       }
     }
   }

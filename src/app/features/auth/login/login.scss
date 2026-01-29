@@ -26,6 +26,20 @@
       z-index: 10;
     }
 
+    .back-btn {
+      position: absolute;
+      bottom: 40px;
+      left: 20px;
+      height: 45px; // Taille de l'icône
+      width: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
     .form-content {
       width: 100%;
       /* AGRANDISSEMENT ICI : On passe de 690px à 850px (ou 900px selon ton goût) */

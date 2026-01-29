@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common'; // Import Location
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,11 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private location: Location // Injecté
+  ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -21,11 +25,20 @@ export class RegisterComponent {
     });
   }
 
-  onRegister() {
-    if (this.registerForm.valid) {
-      console.log('Inscription de :', this.registerForm.value);
-      // Redirection vers l'accueil après inscription réussie
-      this.router.navigate(['/home']); 
-    }
+  goBack() {
+    this.location.back();
   }
+
+  onRegister() {
+  if (this.registerForm.valid) {
+    // 1. Récupérer le nom saisi dans le formulaire
+    const nameToStore = this.registerForm.get('name')?.value;
+
+    // 2. L'enregistrer pour le SearchComponent
+    localStorage.setItem('userName', nameToStore); 
+
+    // 3. Naviguer vers home
+    this.router.navigate(['/home']); 
+  }
+}
 }
