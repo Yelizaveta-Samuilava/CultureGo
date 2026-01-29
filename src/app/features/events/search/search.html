@@ -16,10 +16,17 @@
       
       <div class="search-side">
         <div class="search-bar-container">
-          <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" placeholder="Search for an artist, event...">
-          <button class="search-btn" (click)="onSearch()">
-            <img src="assets/search.png" alt="Search" class="search-icon">
-          </button>
+          <form (submit)="onSearch(); $event.preventDefault()">
+            <input 
+              type="text" 
+              [(ngModel)]="searchQuery" 
+              name="search"
+              placeholder="Search for an artist, event...">
+    
+              <button type="submit" class="search-btn">
+                <img src="assets/search.png" alt="Search" class="search-icon">
+              </button>
+          </form>
         </div>
       </div>
     </div>

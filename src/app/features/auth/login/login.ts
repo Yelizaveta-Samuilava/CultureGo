@@ -23,26 +23,31 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+  goToHome() {
+  this.router.navigate(['/home']);
+}
 
   onLogin() {
-    if (this.loginForm.valid) {
-      // 1. On récupère l'email saisi
-      const email = this.loginForm.get('email')?.value;
+  if (this.loginForm.valid) {
+    const { email, password } = this.loginForm.value;
+    
+    // 1. Récupérer la liste des utilisateurs inscrits
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    
+    // 2. Chercher l'utilisateur
+    const user = users.find((u: any) => u.email === email && u.password === password);
+    
+    if (user) {
+      // 3. Enregistrer les infos de la session
+      localStorage.setItem('userName', user.name);
+      localStorage.setItem('userEmail', user.email);
       
-      // 2. On simule l'extraction d'un nom à partir de l'email
-      // (ex: "amina" si l'email est amina@test.com)
-      const firstName = email.split('@')[0];
-      const displayName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
-
-      // 3. ON ENREGISTRE LE NOM (C'est l'étape qui te manquait)
-      localStorage.setItem('userName', displayName);
-      
-      console.log('Utilisateur connecté :', displayName);
-      
-      // 4. Redirection vers la page home/search
       this.router.navigate(['/home']);
+    } else {
+      alert("Email ou mot de passe incorrect !");
     }
   }
+}
 
   goToRegister() {
     this.router.navigate(['/register']);

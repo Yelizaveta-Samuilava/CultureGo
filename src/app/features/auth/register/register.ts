@@ -31,14 +31,26 @@ export class RegisterComponent {
 
   onRegister() {
   if (this.registerForm.valid) {
-    // 1. Récupérer le nom saisi dans le formulaire
-    const nameToStore = this.registerForm.get('name')?.value;
+    const formData = this.registerForm.value;
 
-    // 2. L'enregistrer pour le SearchComponent
-    localStorage.setItem('userName', nameToStore); 
+    // 1. Récupérer la liste des utilisateurs existants ou créer un tableau vide
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    // 3. Naviguer vers home
+    // 2. Vérifier si l'email existe déjà
+    if (users.find((u: any) => u.email === formData.email)) {
+      alert("Cet email est déjà utilisé !");
+      return;
+    }
+
+    // 3. Ajouter l'utilisateur à la "base de données"
+    users.push(formData);
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // 4. Connecter l'utilisateur actuel
+    localStorage.setItem('userName', formData.name);
+    localStorage.setItem('userEmail', formData.email); // CRUCIAL pour le profil
+
     this.router.navigate(['/home']); 
+    }
   }
-}
 }

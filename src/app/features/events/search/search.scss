@@ -5,6 +5,7 @@
   background-color: #FDFBF7;
   position: relative;
   overflow-x: hidden;
+  font-family: 'Red Hat Display', sans-serif;
 
   // STRUCTURE COMMUNE DU PSEUDO-ÉLÉMENT
   &::after {
@@ -27,14 +28,14 @@
 
   // --- ÉTAT CONNECTÉ (Surcharge) ---
   &.is-logged::after {
-    left: auto;     // On annule le left du guest
-    right: 0;        // On colle à droite
+    left: auto;
+    right: 0;
     height: 370px;  
     width: 100%;    
     background-image: url('/assets/home-pattern.png') !important;
     background-repeat: no-repeat !important;
     background-position: bottom right !important;
-    background-size: contain !important; // Important pour ne pas rogner le pattern
+    background-size: contain !important;
   }
 
   // HERO SECTION
@@ -78,29 +79,47 @@
       justify-content: flex-end;
 
       .search-bar-container {
-        display: flex;
-        align-items: center;
-        border: 3px solid #000;
-        border-radius: 80px;
-        padding: 10px 25px;
         width: 100%;
         max-width: 380px;
-        background: #fffbf3;
 
-        input {
-          border: none;
-          outline: none;
-          flex: 1;
-          font-size: 1.1rem;
-          background: transparent;
-        }
-        
-        .search-btn {
-          background: none;
-          border: none;
-          cursor: pointer;
-          .search-icon { width: 25px; transition: transform 0.2s; }
-          &:hover .search-icon { transform: scale(1.2); }
+        // C'est le FORM qui doit porter le style maintenant
+        form {
+          display: flex;
+          align-items: center;
+          border: 3px solid #000;
+          border-radius: 80px;
+          padding: 10px 25px;
+          background: #fffbf3;
+          width: 100%;
+
+          input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1.1rem;
+            background: transparent;
+            font-family: 'Red Hat Display', sans-serif;
+            min-width: 0; // Empêche l'input de casser le flexbox
+          }
+          
+          .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            font-family: inherit;
+
+            .search-icon { 
+              width: 25px; 
+              transition: transform 0.2s; 
+            }
+            
+            &:hover .search-icon { 
+              transform: scale(1.2); 
+            }
+          }
         }
       }
     }
