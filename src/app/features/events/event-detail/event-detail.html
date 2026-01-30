@@ -1,26 +1,39 @@
+<app-navbar></app-navbar>
+
 <div class="detail-page" *ngIf="event">
-  <button class="btn-back" routerLink="/home">← Retour</button>
+  <button class="btn-back" (click)="goBack()">
+    <img src="assets/back.png" alt="Retour" class="back-icon">
+  </button>
 
-  <div class="event-hero-card">
-    <div class="img-wrapper">
-      <img [src]="event.images?.[0]?.url" [alt]="event.name">
-    </div>
-
-    <div class="content-wrapper">
-      <span class="category-tag">{{ event.classifications?.[0]?.segment?.name }}</span>
-      <h1 class="event-title">{{ event.name }}</h1>
+  <div class="detail-container">
+    <div class="event-hero-card">
       
-      <div class="info-box">
-        <p><strong>📍 Lieu :</strong> {{ event._embedded?.venues?.[0]?.name }}, {{ event._embedded?.venues?.[0]?.city?.name }}</p>
-        <p><strong>📅 Date :</strong> {{ event.dates?.start?.localDate }}</p>
-        
-        <p *ngIf="event.priceRanges?.length > 0">
-          <strong>💰 Prix :</strong> dès {{ event.priceRanges[0].min }} {{ event.priceRanges[0].currency }}
-        </p>
+      <button class="btn-favorite" (click)="toggleFavorite()" [class.is-favorite]="isFavorite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </button>
+
+      <div class="img-wrapper">
+        <img *ngIf="event.images?.length" [src]="event.images[0].url" [alt]="event.name">
       </div>
 
-      <a [href]="event.url" target="_blank" class="buy-button">RÉSERVER MES PLACES</a>
+      <div class="content-wrapper">
+        <span class="category-tag" *ngIf="event.classifications?.[0]?.segment">
+          {{ event.classifications[0].segment.name }}
+        </span>
+        <h1 class="event-title">{{ event.name }}</h1>
+        <div class="info-box">
+          <p><strong>📍 Lieu :</strong> {{ event._embedded?.venues?.[0]?.name }}, {{ event._embedded?.venues?.[0]?.city?.name }}</p>
+          <p><strong>📅 Date :</strong> {{ event.dates?.start?.localDate }}</p>
+          <p *ngIf="event.priceRanges?.length">
+            <strong>💰 Prix :</strong> dès {{ event.priceRanges[0].min }} {{ event.priceRanges[0].currency }}
+          </p>
+        </div>
+        <a [href]="event.url" target="_blank" class="buy-button">RÉSERVER MES PLACES</a>
+      </div>
     </div>
   </div>
-</div>
 
+  <div class="footer-pattern-container"></div>
+</div>

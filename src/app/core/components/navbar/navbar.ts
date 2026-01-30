@@ -13,14 +13,20 @@ export class NavbarComponent {
   constructor(private router: Router) {}
 
   onProfileClick() {
-    // On vérifie si l'utilisateur est stocké dans le localStorage
+    this.checkAuthAndNavigate('/profile');
+  }
+
+  onFavoritesClick() {
+    this.checkAuthAndNavigate('/favorites');
+  }
+
+  // Méthode générique pour vérifier la connexion
+  private checkAuthAndNavigate(path: string) {
     const user = localStorage.getItem('userName');
 
     if (user) {
-      // Si le nom existe, l'utilisateur est considéré comme connecté
-      this.router.navigate(['/profile']);
+      this.router.navigate([path]);
     } else {
-      // Sinon, on l'envoie vers la page de login
       this.router.navigate(['/login']);
     }
   }

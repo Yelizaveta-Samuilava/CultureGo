@@ -1,20 +1,42 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EventDetailComponent } from './event-detail';
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { EventService } from '../../../core/services/event';
+import { FavoriteService } from '../../../core/services/favorite.service';
+import { of } from 'rxjs';
 
-import { EventDetail } from './event-detail';
-
-describe('EventDetail', () => {
-  let component: EventDetail;
-  let fixture: ComponentFixture<EventDetail>;
+describe('EventDetailComponent', () => {
+  let component: EventDetailComponent;
+  let fixture: ComponentFixture<EventDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EventDetail]
-    })
-    .compileComponents();
+      // On importe HttpClientTestingModule pour ne pas faire de vrais appels API pendant les tests
+      imports: [
+        EventDetailComponent, 
+        RouterModule.forRoot([]),
+        HttpClientTestingModule
+      ],
+      providers: [
+        EventService,
+        FavoriteService,
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get: () => '123' // On simule un ID d'événement "123"
+              }
+            }
+          }
+        }
+      ]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(EventDetail);
+    fixture = TestBed.createComponent(EventDetailComponent);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges(); // Déclenche le ngOnInit
   });
 
   it('should create', () => {

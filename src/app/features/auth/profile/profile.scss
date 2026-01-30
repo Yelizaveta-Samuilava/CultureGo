@@ -10,19 +10,54 @@
   padding-top: 10px;
   overflow: hidden;
 
-  .profile-title {
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: #0395ff;
-    text-align: center;
-    margin-bottom: 20px;
-    letter-spacing: -2px;
+  // --- TOP BAR : BOUTON À GAUCHE + TITRE CENTRE ---
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    // On ajoute le "pudding" à gauche ici (40px par exemple)
+    padding: 10px 5% 10px 90px; 
+    z-index: 10;
+
+    .btn-back {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      // On garde une zone fixe pour que le titre reste au milieu
+      flex: 0 0 220px; 
+
+      .back-icon { 
+        width: 180px; // Un peu plus grand comme demandé
+        display: block;
+        transition: transform 0.2s;
+      }
+      &:hover .back-icon { transform: scale(1.05) translateX(-5px); }
+    }
+
+    .profile-title {
+      flex: 1;
+      // TITRE AGRANDI
+      font-size: 5rem; 
+      font-weight: 950;
+      color: #0395ff;
+      text-align: center;
+      margin: 0;
+      letter-spacing: -3px;
+    }
+
+    .spacer {
+      // Le même flex que le bouton pour un centrage parfait du titre
+      flex: 0 0 220px; 
+    }
   }
 
   .content-wrapper {
     width: 100%;
     max-width: 1000px; 
     z-index: 2;
+    margin-top: 10px; // On réduit car le titre prend de la place
 
     .main-profile-content {
       display: flex;
@@ -72,13 +107,8 @@
           width: 100%;
           padding: 4px 10px;
           font-family: inherit;
-          transition: background 0.2s ease;
           &:focus { background: rgba(0, 0, 0, 0.08); }
         }
-      }
-
-      .button-group, .button-container {
-        margin-top: 20px;
       }
 
       .edit-btn, .save-btn, .cancel-btn {
@@ -97,27 +127,26 @@
     }
   }
 
-  // --- STYLE DES ICONES ACTIONS CORRIGÉ ---
   .action-icon {
     position: absolute;
-    bottom: 200px; // Un peu plus haut pour l'agrandissement
-    width: 80px !important; // TAILLE AGRANDIE
-    height: auto;
+    bottom: 220px; 
+    height: 100px !important; 
+    width: auto;
+    object-fit: contain; 
     cursor: pointer;
     z-index: 10;
     transition: transform 0.2s ease;
 
-    &:hover {
-      transform: scale(1.1);
-    }
+    &:hover { transform: scale(1.1); }
 
-    // Séparation forcée
     &.logout-img {
-      left: 60px; 
+      left: 60px;
+      width: 190px !important;
     }
 
     &.delete-img {
       right: 60px;
+      width: 280px !important; 
     }
   }
 

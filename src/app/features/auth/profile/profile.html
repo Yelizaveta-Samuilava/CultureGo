@@ -1,7 +1,15 @@
 <app-navbar></app-navbar>
 
 <div class="profile-page-full">
-  <h1 class="profile-title">Your place</h1>
+  <div class="top-bar">
+    <button class="btn-back" (click)="goBack()">
+      <img src="assets/back.png" alt="Retour" class="back-icon">
+    </button>
+    
+    <h1 class="profile-title">Your place</h1>
+    
+    <div class="spacer"></div>
+  </div>
 
   <div class="content-wrapper">
     <div class="main-profile-content">

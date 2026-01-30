@@ -4,12 +4,18 @@
   </div>
   
   <div class="user-actions">
-    <img src="assets/favorites.png" alt="Favorites" class="nav-icon">
+    <img 
+      src="assets/favorites.png" 
+      alt="Favorites" 
+      class="nav-icon" 
+      (click)="onFavoritesClick()" 
+      style="cursor: pointer;">
     
     <img 
       src="assets/logo-account.png" 
       alt="Account" 
       class="user-account-icon" 
-      (click)="onProfileClick()">
+      (click)="onProfileClick()"
+      style="cursor: pointer;">
   </div>
 </header>
